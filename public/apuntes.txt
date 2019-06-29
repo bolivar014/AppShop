@@ -1,0 +1,339 @@
+[*] Descargar el repositorio inicial de laravel.
+	composer create-project --prefer-dist laravel/laravel [nombre_App]
+	composer create-project --prefer-dist laravel/laravel AppShop
+
+
+[*] Creación de los controladores de Rutas. 
+	php artisan make:controller [NombreController]
+	php artisan make:controller PagesController
+
+[*] Creación de Layouts.
+	1) Creamos una carpeta con el nombre de "layouts"
+	2) Creamos un archivo con el nombre "app.blade.php"
+	3) Implementamos en la MasterPage "app.blade.php" y asignamos la sección Contenido con @yield('content')
+	4) En la sección donde exportaremos a las vistas, asignamos
+		@extends('layouts.app')
+			@section('content')
+				datos que cargaran en la MasterPage
+			@endsection
+
+
+[*]	Creación de Migrations
+		Crear una nueva migracion.	
+		php artisan make:migration [nombre_migration_table] --create messages
+		php artisan make:migration create-messages_table --create messages
+
+		Ejecutar migraciones pendientes.
+		php artisan migrate
+	
+		Editar una migración existente
+		php artisan make:migration nombre_migracion_ --table [nombreTable]
+		php artisan make:migration add_created_at_index_to_messages_table --table messages
+		-- 
+		Para este caso en el esquema de esta migración en el metodo UP
+		 	$table->index('created_at');
+		en el metodo DOWN 
+        	$table->dropIndex('messages_created_at_index');
+
+        Restablecer hasta la ultima migración
+        php artisan migrate:rollback
+
+        Resetear todas las migraciones
+        php artisan migrate:reset
+
+        Restaurar todas las migracciones
+        php artisan migrate:refresh
+
+[*] Crear un modelo
+	Nombre de la clase Message buscara la tabla messages en la db, por lo cual debemos tener en cuenta la sintaxis
+	en caso de ser varias palabras, el nombre del modelo seria MessageContent y el nombre de la tabla message_contents
+	php artisan make:model [NombreModel]
+	php artisan make:model Message
+	
+[*] Creación de Tokens en los formularios.
+	{{ csrf_field() }}
+	
+[*] Para recibir parametros desde los formularios, se implementa un objeto (Request $request)
+
+	
+[*] 
+	php artisan make:request [CreateNombreRequest]
+	php artisan make:request CreateMessageReques
+	
+[*] Error Add [content] to fillable property to allow mass assignment on [App\Message]...
+	vamos al modelo donde nos genera el error y agregamos...
+	 protected $guarded = []; // en este caso es vacio porque no necesitamos parametrizar variables ya que no manejamos contraseñas
+	
+[*] Creación de Seeds con Tinker
+		- Verificar que este Activo Tinker en ../composer.json
+			"require" : { "laravel/tinker": "^1.0" } 
+		- En ../config/app.php verificamos que este activo el servicio [TINKER PROVIDERS]
+			/*
+			* Package Service Providers...
+		 	*/
+		    Laravel\Tinker\TinkerServiceProvider::class,
+	        
+		- Adicional Agregamos función en la ruta ../database/factories/[nombreFactory] una función que cree los datos.
+			// Para este caso se utiliza esta función para crear mensajes que contenga 'content' y 'image'
+			$factory->define(App\Message::class, function(Faker $faker){
+		    return [
+			    'content' => $faker->realText(random_int(20, 160)), // Se le asigna una longitud en el texto de 20 a 160 caracteres.
+		        'image' => $faker->imageUrl(600,338)
+		    	];
+			});
+
+		- Activamos el servicio con:
+		php artisan tinker
+			[*] creación de un registro en la base de datos,
+			$message = factory(App\Message::class)->create()
+
+		Para la creación de Registros automaticos, hacemos el siguiente proceso.
+		En la carpeta ../database/seeds/DatabaseSeeder.php, utilizamos la función public function run(), para generar mensajes automaticos con la siguiente linea...
+		factory(App\Message::class)
+		->times(100) // Generamos 100 mensajes y los creamos
+		->create();
+
+		adicional Ejecutamos 
+		php artisan db:seed
+
+[*] Ejecutar RollBack de Todas las MIGRATION existentes y ejecutar los Seeds Creados para generar sus datos...
+	php artisan migrate:refresh --seed 
+	
+[*] metodo paginate() de eloquent
+	Agregamos en el controlador donde deseamos dar una paginación, la funcion ::paginate(Longitud);
+	Ejm: Paginación View Welcome
+	
+	public function home()
+    {
+        $messages = Message::paginate(30); // Paginación(Cantidad Datos A Mostrar)
+        
+        // dd($messages); // desbordamiento del código para verificar datos enviados
+
+        return view('welcome',[
+            'messages' => $messages,
+            ]);
+    }
+	
+	Adicional En la View Agregamos...
+	@if(count($messages))
+		<div class="mt-2 mx-auto">
+			{{ $messages->links('pagination::bootstrap-4') }}
+		</div>
+	@endif
+
+[*] Agregar Autenticación en laravel...
+	php artisan make:auth
+	
+[*] Ejecutar los seeds creados.
+	php artisan db:seed
+	
+[*] Errores de longitud de caracteres...
+	se agrega lo siguiente en la ruta... App/Providers/AppServiceProvider
+	use Illuminate\Support\Facades\Schema;
+   	public function boot()
+    {
+        //
+        Schema::defaultStringLength(191);
+    }
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
+	
+[*] 
