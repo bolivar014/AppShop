@@ -1,3 +1,19 @@
+[*] Verificar Estado de git..
+    git status
+
+    Inicializar repositorio git
+    git init 
+
+    agregar todo el repositorio al git...
+    git add -A 
+
+    Nombre del primer commit
+    git commit -m "Proyecto Base.."
+
+    git remote add origin [https://github.com/bolivar014/AppShop.git]
+
+    git push -f origin master
+
 [*] Descargar el repositorio inicial de laravel.
 	composer create-project --prefer-dist laravel/laravel [nombre_App]
 	composer create-project --prefer-dist laravel/laravel AppShop
