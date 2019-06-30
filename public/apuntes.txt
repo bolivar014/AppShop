@@ -152,15 +152,24 @@
         Schema::defaultStringLength(191);
     }
 	
-[*] 
+[*] Representacion de modelos y migraciones...
+	User -> users
+	Product -> products
+	Gallery -> galleries
 	
 [*] 
+	php artisan make:model [NombreModelo] -m
+	php artisan make:model Category -m
 	
-[*] 
+[*] despues de asignar las relaciones entre las tablas, en el modelo debemos asignar su relación
 	
-[*] 
-	
-[*] 
+[*] Creacion de Seeders
+	php artisan make:seeder [NombreModelTableSeeder]
+	php artisan make:seeder UsersTableSeeder	
+
+[*] Creacion de los Factories...
+	php artisan make:factory [NameFactory]
+	php artisan make:factory ProductFactory
 	
 [*] 
 	

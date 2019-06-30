@@ -132,8 +132,41 @@
                 </div>
             </div>
             
+             <!-- prueba -->
+             <div class="section text-center">
+                <h2 class="title">Productos Disponibles.</h2>
+                
+                <div class="team">
+                    <div class="row">
+                        @foreach ($products as $product)                    
+                            <div class="col-md-4">
+                                <div class="team-player">
+                                <!-- code en el SRC -->
+                                    <img src="{{ asset('img/faces/avatar.jpg') }}"  alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
+                                    <h4 class="card-title"> {{ $product->name }}
+                                        <br>
+                                        <small class="card-description text-muted"> Fecha Actualización: {{ $product->updated_at }} </small>
+                                    </h4>
+                                    <div class="card-body">
+                                        <p class="card-description"> {{ $product->description }}
+                                        <a hrf="#">links</a> for people to be able to follow them outside the site.</p>
+                                    </div>
+                            
+                                </div>
+                            </div>
+                        @endforeach
+
+                        @if(count($products))
+                            <div class="mt-2 mx-auto">
+                                {{ $products->links('pagination::bootstrap-4') }}
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
             
-         
+          <!--FIN prueba -->
+
             <div class="section section-contacts">
                 <div class="row">
                 <div class="col-md-8 ml-auto mr-auto">
