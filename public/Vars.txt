@@ -1,0 +1,63 @@
+   <!-- prueba -->
+            <div class="section text-center">
+                <h2 class="title">Productos Disponibles.</h2>
+                
+                <div class="team">
+                    <div class="row">
+                        @foreach ($products as $product)                    
+                            <div class="col-md-4">
+                                <div class="team-player">
+                                <!-- code en el SRC -->
+                                    <img src=""  alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
+                                    <h4 class="card-title"> {{ $product->name }}
+                                        <br>
+                                        <small class="card-description text-muted"> code! aqui!  </small>
+                                    </h4>
+                                    <div class="card-body">
+                                        <p class="card-description"> {{ $product->description }}
+                                        <a hrf="#">links</a> for people to be able to follow them outside the site.</p>
+                                    </div>
+                                    <div class="card-footer justify-content-center">
+                                        <a href="#pablo" class="btn btn-link btn-just-icon"><i class="fa fa-twitter"></i></a>
+                                        <a href="#pablo" class="btn btn-link btn-just-icon"><i class="fa fa-instagram"></i></a>
+                                        <a href="#pablo" class="btn btn-link btn-just-icon"><i class="fa fa-facebook-square"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section text-center">
+                <h2 class="title">Usuarios Disponibles.</h2>
+                
+                <div class="team">
+                    <div class="row">
+                    <!-- cargamos los datos desde el controlador TestController -->
+                        @foreach ($users as $user)                    
+                            <div class="col-md-4">
+                                <div class="team-player">
+                                    <img src="{{ asset('img/faces/avatar.jpg') }}" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
+                                    <h4 class="card-title"> {{ $user->name }}
+                                        <br>
+                                        <small class="card-description text-muted">Model</small>
+                                    </h4>
+                                    <div class="card-body">
+                                        <p class="card-description"> {{ $user->password }}
+                                        <a hrf="#">links</a> for people to be able to follow them outside the site.</p>
+                                    </div>
+                                    <div class="card-footer justify-content-center">
+                                        <a href="#pablo" class="btn btn-link btn-just-icon"><i class="fa fa-twitter"></i></a>
+                                        <a href="#pablo" class="btn btn-link btn-just-icon"><i class="fa fa-instagram"></i></a>
+                                        <a href="#pablo" class="btn btn-link btn-just-icon"><i class="fa fa-facebook-square"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+
+            <!-- prueba -->
+            
