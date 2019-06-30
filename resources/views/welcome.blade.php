@@ -138,7 +138,7 @@
                 
                 <div class="team">
                     <div class="row">
-                        @foreach ($products as $product)                    
+                        @forelse ($products as $product)                    
                             <div class="col-md-4">
                                 <div class="team-player">
                                 <!-- code en el SRC -->
@@ -151,10 +151,11 @@
                                         <p class="card-description"> {{ $product->description }}
                                         <a hrf="#">links</a> for people to be able to follow them outside the site.</p>
                                     </div>
-                            
                                 </div>
                             </div>
-                        @endforeach
+                        @empty
+                        <h1 class="h2">Lo sentimos, En el momento no contamos con productos disponibles...</h1>
+                        @endforelse
 
                         @if(count($products))
                             <div class="mt-2 mx-auto">
