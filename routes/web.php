@@ -17,14 +17,32 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-// Rutas Vista Productos...
-Route::get('/admin/products','ProductController@index'); // Listar Productos
-Route::get('/admin/products/create','ProductController@create'); // Crear un nuevo Producto
-Route::post('/admin/products','ProductController@store'); // Actualiza un Registro de Producto
+Route::middleware(['auth','admin'])->prefix('admin')->group(function(){
 
-// Rutas Para Edición de Productos Existentes
-Route::get('/admin/products/{id}/edit','ProductController@edit'); // Realiza la petición al producto a actualizar
-Route::post('/admin/products/{id}/edit','ProductController@update'); // Actualiza un Registro de Producto
+    
+    // Rutas Vista Productos...
+    Route::get('/products','ProductController@index'); // Listar Productos
+    Route::get('/products/create','ProductController@create'); // Crear un nuevo Producto
+    Route::post('/products','ProductController@store'); // Actualiza un Registro de Producto
 
-// Ruta Para La Eliminación del producto
-Route::delete('/admin/products/{id}','ProductController@destroy'); // Realiza la petición al producto a actualizar
+    // Rutas Para Edición de Productos Existentes
+    Route::get('/products/{id}/edit','ProductController@edit'); // Realiza la petición al producto a actualizar
+    Route::post('/products/{id}/edit','ProductController@update'); // Actualiza un Registro de Producto
+
+    // Ruta Para La Eliminación del producto
+    Route::delete('/products/{id}','ProductController@destroy'); // Realiza la petición al producto a actualizar
+
+    // Rutas sin el middleware y sin prefix('admin')
+    //// Rutas Vista Productos...
+    // Route::get('/admin/products','ProductController@index'); // Listar Productos
+    // Route::get('/admin/products/create','ProductController@create'); // Crear un nuevo Producto
+    // Route::post('/admin/products','ProductController@store'); // Actualiza un Registro de Producto
+
+    //// Rutas Para Edición de Productos Existentes
+    // Route::get('/admin/products/{id}/edit','ProductController@edit'); // Realiza la petición al producto a actualizar
+    // Route::post('/admin/products/{id}/edit','ProductController@update'); // Actualiza un Registro de Producto
+
+    //// Ruta Para La Eliminación del producto
+    // Route::delete('/admin/products/{id}','ProductController@destroy'); // Realiza la petición al producto a actualizar
+
+});

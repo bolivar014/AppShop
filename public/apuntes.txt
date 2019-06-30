@@ -175,7 +175,24 @@
 	Get: cuando deseamos consultar información.
 	Post: Cuando deseamos Actualizar información
 	
-[*] 
+[*] Crear Middleware
+	php artisan make:middleware [NombreMiddleware]
+	php artisan make:middleware AdminMiddleware
+	 	
+		cada vez que deseemos utilizar un middleware en grupo de rutas, debemos agregar su alias en...
+		App\Http\Kernel
+		en.. 
+		protected $routeMiddleware = [
+			'admin' => \App\Http\Middleware\AdminMiddleware::class,
+    	];
+
+		adicional el control de las rutas para este admin seria...
+		->prefix('admin') // Es para controlar las rutas de admin...
+		Route::middleware(['auth','admin'])->prefix('admin')->group(function(){
+		{
+		    // Rutas para usuario con roll administrador...
+		});
+
 	
 [*] 
 	
