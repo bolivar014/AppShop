@@ -171,7 +171,9 @@
 	php artisan make:factory [NameFactory]
 	php artisan make:factory ProductFactory
 	
-[*] 
+[*] Tipos de Peticiones
+	Get: cuando deseamos consultar información.
+	Post: Cuando deseamos Actualizar información
 	
 [*] 
 	
