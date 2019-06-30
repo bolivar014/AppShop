@@ -142,9 +142,10 @@
                             <div class="col-md-4">
                                 <div class="team-player">
                                 <!-- code en el SRC -->
-                                    <img src="{{ asset('img/faces/avatar.jpg') }}"  alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
-                                    <h4 class="card-title"> {{ $product->name }}
+                                    <img src="{{ $product->images()->first()->image }}"  alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
+                                    <h4 class="card-title"><strong style="color:red;">Nombre Producto:</strong> {{ $product->name }}
                                         <br>
+                                        <p class="card-description">Categoria: {{ $product->category->name }} </p>
                                         <small class="card-description text-muted"> Fecha Actualización: {{ $product->updated_at }} </small>
                                     </h4>
                                     <div class="card-body">
