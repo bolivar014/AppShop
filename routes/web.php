@@ -25,3 +25,6 @@ Route::post('/admin/products','ProductController@store'); // Actualiza un Regist
 // Rutas Para Edición de Productos Existentes
 Route::get('/admin/products/{id}/edit','ProductController@edit'); // Realiza la petición al producto a actualizar
 Route::post('/admin/products/{id}/edit','ProductController@update'); // Actualiza un Registro de Producto
+
+// Ruta Para La Eliminación del producto
+Route::delete('/admin/products/{id}','ProductController@destroy'); // Realiza la petición al producto a actualizar

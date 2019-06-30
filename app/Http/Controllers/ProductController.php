@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\ImageProduct;
 
 class ProductController extends Controller
 {
@@ -48,14 +49,22 @@ class ProductController extends Controller
         $product->description = $request->input('description');
         $product->price = $request->input('price');
         $product->long_description = $request->input('long_description');
-        $product->save();
+        $product->save(); // Update
 
         return redirect('/admin/products');
     }
 
     //
-    public function index2()
+    public function destroy($id)
     {
-        return view('');
+       
+            $product = Product::find($id); // Buscamos el producto
+            $product->delete(); // Eliminar Producto
+            
+        
+            return redirect('/admin/products');
+       
+        
+        // return back();
     }
 }
