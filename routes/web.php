@@ -24,7 +24,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/products/{id}','ProductController@show'); // Ver Productos sin roll de administrador
 
 // 
-Route::post('/cart','CartDetailController@store'); // 
+Route::post('/cart','CartDetailController@store'); // Agregar Producto al Carrito de compra
+Route::delete('/cart','CartDetailController@destroy'); // Eliminar Producto del Carrito de compra
+
 
 // RUTAS BAJO EL ROLL DE ADMINISTRADOR
 Route::middleware(['auth','admin'])->prefix('admin')->namespace('Admin')->group(function(){
