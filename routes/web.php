@@ -17,11 +17,12 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::middleware(['auth','admin'])->prefix('admin')->group(function(){
+// 
+Route::get('/products/{id}','ProductController@show'); // Ver Productos sin roll de administrador
 
-    
+Route::middleware(['auth','admin'])->prefix('admin')->namespace('Admin')->group(function(){
     // Rutas Vista Productos...
-    Route::get('/products','ProductController@index'); // Listar Productos
+    Route::get('/products','ProductController@index'); // Listar Productos con roll de administrador
     Route::get('/products/create','ProductController@create'); // Crear un nuevo Producto
     Route::post('/products','ProductController@store'); // Actualiza un Registro de Producto
 

@@ -246,7 +246,10 @@
 			}
 			return back();
 		}
-[*] 
+
+[*] Al cambiar los Controladores de rutas, debemos actualizar los controladores de la siguiente manera.
+	namespace App\Http\Controllers\Admin;
+	use App\Http\Controllers\Controller;
 	
 [*] 
 	

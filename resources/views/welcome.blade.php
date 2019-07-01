@@ -3,6 +3,29 @@
 
     @section('body-class','landing-page')
 
+    @section('styles')
+    <style>
+        .team .row .col-md-4
+        {
+            margin-bottom:5em;
+
+        }
+        .row
+        {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .row > [class*='col-']
+        {
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+    @endsection
+
     @section('content') 
         <div class="page-header header-filter" data-parallax="true" style="background-image: url('{{ asset('img/profile_city.jpg') }}')">
             <div class="container">
@@ -140,18 +163,15 @@
                     <div class="row">
                         @forelse ($products as $product)                    
                             <div class="col-md-4">
-                                <div class="team-player">
+                                <div class="team-player card card-plain">
                                 <!-- code en el SRC -->
-                                    <img src="{{ $product->featured_image_url }}"  alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
-                                    <h4 class="card-title"><strong style="color:red;">Nombre Producto:</strong> {{ $product->name }}
+                                    <img src="{{ $product->featured_image_url }}"  alt="Thumbnail Image" class="img-raised img-circle">
+                                    <h4 class="title">
+                                        <a href="{{ url('/products/'.$product->id) }}">{{ $product->name }}</a>
                                         <br>
-                                        <p class="card-description">Categoria: {{ $product->category->name }} </p>
-                                        <small class="card-description text-muted"> Fecha Actualización: {{ $product->updated_at }} </small>
+                                        <small class="text-muted">{{ $product->category->name }}</small>
                                     </h4>
-                                    <div class="card-body">
-                                        <p class="card-description"> {{ $product->description }}
-                                        <a hrf="#">links</a> for people to be able to follow them outside the site.</p>
-                                    </div>
+                                    <p class="description">{{ $product->description }}</p>
                                 </div>
                             </div>
                         @empty
