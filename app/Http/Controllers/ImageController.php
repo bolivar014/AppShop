@@ -14,7 +14,7 @@ class ImageController extends Controller
     public function index($id)
     {
         $product = Product::find($id);
-        $images = $product->images;
+        $images = $product->images()->orderBy('featured', 'desc')->get();
         return view('admin.products.images.index')->with(compact('product','images'));
     }
    
@@ -60,9 +60,18 @@ class ImageController extends Controller
         return back();
     }
    
-    //
-    public function index2()
+    // Seleccionar Imagen destacada...
+    public function select(Request $request, $id, $image)
     {
-        return view('');
+        // Update Para Asígnar todas las imagenes destacadas en modo False
+        ProductImage::where('product_id', $id)->update([
+            'featured' => false
+        ]);
+        
+        // Asignamos nueva imagen destacada
+        $productImage = ProductImage::find($image);
+        $productImage->featured = true;
+        $productImage->save();
+        return back();    
     }
 }

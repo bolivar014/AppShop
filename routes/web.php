@@ -37,7 +37,8 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function(){
     Route::post('/products/{id}/images', 'ImageController@store'); // Guardar Nuevas Imagenes
     Route::delete('/products/{id}/images', 'ImageController@destroy'); // Eliminar Imagenes
 
-
+    // Ruta Para destacar una imagen de Producto
+    Route::get('/products/{id}/images/select/{image}','ImageController@select');
    
 });
 
