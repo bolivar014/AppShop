@@ -32,7 +32,16 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function(){
     // Ruta Para La Eliminación del producto
     Route::delete('/products/{id}','ProductController@destroy'); // Realiza la petición al producto a actualizar
 
-    // Rutas sin el middleware y sin prefix('admin')
+    // Ruta para el Registro de nuevas imagenes al Producto
+    Route::get('/products/{id}/images', 'ImageController@index'); // Listar Imagenes
+    Route::post('/products/{id}/images', 'ImageController@store'); // Guardar Nuevas Imagenes
+    Route::delete('/products/{id}/images', 'ImageController@destroy'); // Eliminar Imagenes
+
+
+   
+});
+
+ // Rutas sin el middleware y sin prefix('admin')
     //// Rutas Vista Productos...
     // Route::get('/admin/products','ProductController@index'); // Listar Productos
     // Route::get('/admin/products/create','ProductController@create'); // Crear un nuevo Producto
@@ -44,5 +53,3 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function(){
 
     //// Ruta Para La Eliminación del producto
     // Route::delete('/admin/products/{id}','ProductController@destroy'); // Realiza la petición al producto a actualizar
-
-});
