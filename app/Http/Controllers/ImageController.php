@@ -17,9 +17,21 @@ class ImageController extends Controller
     }
    
     //
-    public function store()
+    public function store(Request $request, $id)
     {
-        return view('');
+        // Recuperamos el archivo que se esta cargando
+        $file = $request->file('photo');
+        $path = public_path() . '/images/products'; // Asignamos la ruta donde almacenara el archivo
+        $fileName = uniqid() . $file->getClientOriginalName(); // Convertimo el nombre del archivo
+        $file->move($path, $fileName); // Guardamos el archivo en la ruta deseada...
+
+        $productImage = new ProductImage();
+        $productImage->image = $fileName;
+        $productImage->featured = false;
+        $productImage->product_id = $id;
+        $productImage->save(); // Guardamos Registro En La DB.
+        
+        return back();
     }
    
     //

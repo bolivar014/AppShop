@@ -24,13 +24,11 @@
                     <div class="section text-center">
                         <h2 class="title">Imagenes Del Producto "{{ $product->name }}"...</h2>
 
-                        <form action="" method="post">
+                        <form action="" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <input type="file" name="photo" required>
                             <button type="submit" class="brn btn-primary btn-round">Subir Imagen</button>
-                        
                             <a href="{{ url('/admin/products') }}" class="btn btn-primary btn-round">Volver Atras...</a>
-
                         </form>
 
                         <hr>
@@ -40,7 +38,7 @@
                                 <div class="col-md-4" style="border: 0.2px solid gray;">
                                     <div class="panel panel-default">
                                         <div class="panel-body">
-                                            <img src="{{ $image->image }}" alt="">
+                                            <img src="{{ $image->url }}" alt="" width="250" heigth="250">
                                             
                                             <button type="submit" class="btn btn-danger btn-round">Eliminar Imagen</button>
                                         </div>
