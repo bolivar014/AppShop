@@ -63,6 +63,7 @@
                                 @if (auth()->user()->admin)
                                     <a class="dropdown-item" href="{{ url('/admin/products') }}">Gestionar Productos</a>
                                 @endif 
+                                <a class="dropdown-item" href="{{ url('/home') }}">Dashboard...</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
@@ -94,6 +95,25 @@
             </div>
         </div>
     </nav>
+
+    <!-- Collage -->
+    <div class="page-header header-filter" data-parallax="true" style="background-image: url('{{ asset('img/profile_city.jpg') }}')">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1 class="title">Bienvenidos a App-Shop!.</h1>
+                    <h4>Solicita tus pedidos en linea y proximamente nos comunicaremos con tigo, para confirmar la entrega...</h4>
+                    <br>
+                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="btn btn-danger btn-raised btn-lg">
+                        <i class="fa fa-play"></i><strong> ¿Cómo Funciona?</strong>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Collage -->
+
 
     <div class="wrapper">
         @yield('content')

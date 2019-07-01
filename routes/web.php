@@ -17,9 +17,16 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+
+
 // 
 Route::get('/products/{id}','ProductController@show'); // Ver Productos sin roll de administrador
 
+// 
+Route::post('/cart','CartDetailController@store'); // 
+
+// RUTAS BAJO EL ROLL DE ADMINISTRADOR
 Route::middleware(['auth','admin'])->prefix('admin')->namespace('Admin')->group(function(){
     // Rutas Vista Productos...
     Route::get('/products','ProductController@index'); // Listar Productos con roll de administrador
