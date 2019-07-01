@@ -191,12 +191,8 @@
     <script src="{{ asset('js/plugins/jquery.sharrre.js" type="text/javascript"></script>
     <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
     <script src="{{ asset('js/material-kit.js?v=2.0.4" type="text/javascript"></script>
-
-
-
-
-
-        <script type="text/javascript" src="assets/js/jquery-1.11.2.min.js"></script>
+    <!--Otros -->
+    <script type="text/javascript" src="assets/js/jquery-1.11.2.min.js"></script>
     <script type="text/javascript" src="assets/js/bootstrap.js"></script>
     <script type="text/javascript" src="assets/js/bootstrap-table.js"></script>
 

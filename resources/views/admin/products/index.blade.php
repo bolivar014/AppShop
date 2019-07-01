@@ -81,7 +81,9 @@
             <!--FIN prueba -->
             </div>
         </div>
-        <footer class="footer">
-        </footer>
 
+        <!-- Incluir la vista Footer -->
+        @include('includes.footer')
+        <!-- FIN - Incluir la vista Footer -->
+    
     @endsection
