@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\ProductImage;
+use File;
+
 
 class ImageController extends Controller
 {
@@ -20,24 +22,42 @@ class ImageController extends Controller
     public function store(Request $request, $id)
     {
         // Recuperamos el archivo que se esta cargando
-        $file = $request->file('photo');
+        $file = $request->file('photo'); // nombre del input donde buscara el archivo
         $path = public_path() . '/images/products'; // Asignamos la ruta donde almacenara el archivo
         $fileName = uniqid() . $file->getClientOriginalName(); // Convertimo el nombre del archivo
-        $file->move($path, $fileName); // Guardamos el archivo en la ruta deseada...
+        $moved = $file->move($path, $fileName); // Guardamos el archivo en la ruta deseada...
 
-        $productImage = new ProductImage();
-        $productImage->image = $fileName;
-        $productImage->featured = false;
-        $productImage->product_id = $id;
-        $productImage->save(); // Guardamos Registro En La DB.
-        
-        return back();
+        if($moved) // True or False, si se ha guardado el archivo correctamente...
+        {
+            // Crea el registro de la nueva imagen
+            $productImage = new ProductImage();
+            $productImage->image = $fileName;
+            $productImage->featured = false;
+            $productImage->product_id = $id;
+            $productImage->save(); // Guardamos Registro En La DB.
+        }            
+            return back();
     }
    
     //
-    public function destroy()
+    public function destroy(Request $request, $id)
     {
-        return view('');
+        $productImage = ProductImage::find($request->input('image_id'));
+        if(substr($productImage->image,0 ,4) !== "http")
+        {
+            $deleted = true;
+        }
+        else
+        {
+            $fullPath = public_path() . '/images/products/' . $productImage->image;
+            $deleted = File::delete($fullPath);
+        }
+
+        if($deleted)
+        {
+            $productImage->delete();
+        }
+        return back();
     }
    
     //
