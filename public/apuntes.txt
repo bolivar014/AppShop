@@ -226,7 +226,26 @@
 				return back();
 		}
 	
-	// Eliminar Archivos
+		// Eliminar Archivos
+	    public function destroy(Request $request, $id)
+		{
+			$productImage = ProductImage::find($request->input('image_id'));
+			if(substr($productImage->image,0 ,4) !== "http")
+			{
+				$deleted = true;
+			}
+			else
+			{
+				$fullPath = public_path() . '/images/products/' . $productImage->image;
+				$deleted = File::delete($fullPath);
+			}
+
+			if($deleted)
+			{
+				$productImage->delete();
+			}
+			return back();
+		}
 [*] 
 	
 [*] 
