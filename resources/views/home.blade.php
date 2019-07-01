@@ -8,9 +8,9 @@
             <div class="container">
                 <div class="section text-center">
                     <h2 class="title">Dashboard</h2>
-                    @if(session('status'))
+                    @if(session('notification'))
                         <div class="alert alert-success">
-                            {{ session('status') }}
+                            {{ session('notification') }}
                         </div>
                     @endif
 
@@ -31,7 +31,7 @@
                     
                     <hr>
 
-                    <p>Tu carrito de compras presenta una cantidad de: <strong> {{ auth()->user()->cart->details->count() }} </strong>, seleccionado... </p>
+                    <p>Tu carrito de compras presenta una cantidad de: <strong> {{ auth()->user()->cart->details->count() }} </strong>, Productos Seleccionados... </p>
 
                     <hr>
                     
@@ -78,6 +78,16 @@
                                     @endforelse
                                 </tbody>
                             </table>                    
+
+                            <div class="text-center">
+                               <form action="{{ url('/order') }}" method="post">
+                                    {{ csrf_field() }}
+                                    <button class="btn btn-primary btn-round">
+                                        <i class="material-icons">done</i>
+                                        Confirmar Pedido
+                                    </button>
+                               </form>
+                            </div>
 
                 </div>
             </div>

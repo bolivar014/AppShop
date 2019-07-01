@@ -26,6 +26,7 @@ Route::get('/products/{id}','ProductController@show'); // Ver Productos sin roll
 // 
 Route::post('/cart','CartDetailController@store'); // Agregar Producto al Carrito de compra
 Route::delete('/cart','CartDetailController@destroy'); // Eliminar Producto del Carrito de compra
+Route::post('/order','CartController@update'); // Confirmar Pedido
 
 
 // RUTAS BAJO EL ROLL DE ADMINISTRADOR

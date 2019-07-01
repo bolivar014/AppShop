@@ -16,7 +16,9 @@ class CartDetailController extends Controller
         $cartDetail->quantity = $request->input('quantity');
         $cartDetail->save();
 
-        return back();
+        $notification = 'El Producto se ha Reservado Exitosamente';
+
+        return back()->with(compact('notification'));
     }
 
     //
@@ -29,7 +31,9 @@ class CartDetailController extends Controller
             $cartDetail->delete();
         }
 
-        return back();
+        $notification = 'El Producto se ha eliminado Correctamente';
+
+        return back()->with(compact('notification'));
     }
 
 }
